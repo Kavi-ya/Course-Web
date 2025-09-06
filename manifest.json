@@ -1,7 +1,7 @@
 {
-  "name": "TidyCourseweb",
-  "description": "Declutter your Courseweb by hiding old modules and focusing on your current courses.",
-  "version": "1.2",
+  "name": "SliitScope",
+  "description": "A browser extension to enhance the SLIIT Courseweb experience.",
+  "version": "2.0",
   "manifest_version": 3,
   "host_permissions": ["https://courseweb.sliit.lk/*"],
   "permissions": ["storage"],
@@ -18,7 +18,7 @@
     }
   ],
   "action": {
-    "default_title": "TidyCourseweb",
+    "default_title": "SliitScope",
     "default_popup": "popup/popup.html",
     "default_icon": "icons/icon32.png"
   },
