@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TidyCourseweb Popup</title>
+    <link rel="stylesheet" href="popup.css" />
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-icon">
+          <i class="fi fi-tr-lesson"></i>
+        </div>
+        <h3>TidyCourseweb</h3>
+      </div>
+
+      <div class="content">
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Search courses..."/>
+        </div>
+        <div class="controls">
+          <select id="filter-select">
+            <option value="all">Show: All</option>
+            <option value="visible">Visible Only</option>
+            <option value="hidden">Hidden Only</option>
+          </select>
+          <select id="sort-select">
+            <option value="default">Sort: Original</option>
+            <option value="az">Sort: A-Z</option>
+            <option value="za">Sort: Z-A</option>
+          </select>
+        </div>
+        <button id="show-all">Show All Modules</button>
+        <ul id="module-list"></ul>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
