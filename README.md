@@ -19,7 +19,8 @@ A clean, modern Chrome extension for SLIIT students that declutters your Coursew
 
 ## Screenshots
 
-*(User: You can add new screenshots here to reflect the new UI and features.)*
+![Light Theme](https://github.com/Kavi-ya/Course-Web/blob/main/Screenshots/Light%20Theme.png)
+![Dark Theme](https://github.com/Kavi-ya/Course-Web/blob/main/Screenshots/Dark%20Theme.png)
 
 ---
 
@@ -29,7 +30,7 @@ A clean, modern Chrome extension for SLIIT students that declutters your Coursew
 2.  Go to `chrome://extensions/` in your browser.
 3.  Enable “Developer mode” (toggle in top-right).
 4.  Click “Load unpacked” and select this folder.
-  5. Pin SliitScope for quick access in your toolbar!
+5. Pin SliitScope for quick access in your toolbar!
 6.  Open [https://courseweb.sliit.lk/](https://courseweb.sliit.lk/), and use the popup or menu toggles to organize your modules.
 
 ---
