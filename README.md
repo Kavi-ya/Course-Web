@@ -68,7 +68,7 @@ Want to contribute or fork?
 
 ## Author
 
-Kavindu Sahansilva
+Kavindu Sahan Silva
 
 ---
 
