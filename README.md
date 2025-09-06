@@ -1,4 +1,4 @@
-# TidyCourseweb
+# SliitScope
 
 A clean, modern Chrome extension for SLIIT students that declutters your Courseweb dashboard—focus on your current modules, hide past courses, and stay organized with powerful new features!
 
@@ -29,7 +29,7 @@ A clean, modern Chrome extension for SLIIT students that declutters your Coursew
 2.  Go to `chrome://extensions/` in your browser.
 3.  Enable “Developer mode” (toggle in top-right).
 4.  Click “Load unpacked” and select this folder.
-5.  Pin TidyCourseweb for quick access in your toolbar!
+  5. Pin SliitScope for quick access in your toolbar!
 6.  Open [https://courseweb.sliit.lk/](https://courseweb.sliit.lk/), and use the popup or menu toggles to organize your modules.
 
 ---

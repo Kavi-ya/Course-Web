@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function createModuleListItem(mod, modules, hiddenIds, tabId) {
     const li = document.createElement("li");
 
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "module-checkbox";
+    checkbox.dataset.id = mod.id;
+    li.appendChild(checkbox);
+
     const titleSpan = document.createElement("span");
     titleSpan.className = "module-title";
     titleSpan.textContent = mod.name;
@@ -125,8 +131,74 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function setupTheme() {
+    const themeToggle = document.getElementById("theme-toggle");
+    const container = document.querySelector(".container");
+
+    function applyTheme(theme) {
+        if (theme === "light") {
+            container.classList.add("light-theme");
+            themeToggle.textContent = "☀️";
+        } else {
+            container.classList.remove("light-theme");
+            themeToggle.textContent = "🌙";
+        }
+    }
+
+    chrome.storage.local.get({ theme: "dark" }, (data) => {
+        applyTheme(data.theme);
+    });
+
+    themeToggle.onclick = function () {
+        const currentTheme = container.classList.contains("light-theme") ? "light" : "dark";
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+        chrome.storage.local.set({ theme: newTheme }, () => {
+            applyTheme(newTheme);
+        });
+    };
+  }
+
+  function setupBulkActions(tabId, modules) {
+    const selectAllCheckbox = document.getElementById("select-all");
+    const hideSelectedBtn = document.getElementById("hide-selected");
+    const showSelectedBtn = document.getElementById("show-selected");
+    const moduleList = document.getElementById("module-list");
+
+    selectAllCheckbox.onchange = function () {
+        const checkboxes = moduleList.querySelectorAll(".module-checkbox");
+        checkboxes.forEach(cb => {
+            cb.checked = selectAllCheckbox.checked;
+        });
+    };
+
+    function handleBulkAction(action) {
+        const checkboxes = moduleList.querySelectorAll(".module-checkbox:checked");
+        const selectedIds = Array.from(checkboxes).map(cb => cb.dataset.id);
+
+        if (selectedIds.length === 0) return;
+
+        fetchHiddenModules(hiddenIds => {
+            let updatedHiddenIds;
+            if (action === 'hide') {
+                updatedHiddenIds = [...new Set([...hiddenIds, ...selectedIds])];
+            } else { // show
+                updatedHiddenIds = hiddenIds.filter(id => !selectedIds.includes(id));
+            }
+            saveHiddenModules(updatedHiddenIds, () => {
+                renderModuleList(modules, updatedHiddenIds, tabId);
+                chrome.tabs.sendMessage(tabId, { type: "SYNC_MODULES" });
+            });
+        });
+    }
+
+    hideSelectedBtn.onclick = () => handleBulkAction('hide');
+    showSelectedBtn.onclick = () => handleBulkAction('show');
+  }
+
   // Initialize popup
   getCurrentTab((tab) => {
+    setupTheme();
+
     if (
       !tab ||
       !tab.url ||
@@ -136,38 +208,53 @@ document.addEventListener("DOMContentLoaded", function () {
       if (contentDiv) {
         contentDiv.innerHTML = `
           <div style="text-align:center; color:#AAA; padding:32px 0;">
-            <p><b>TidyCourseweb</b> works only on</p>
+            <p><b>SliitScope</b> works only on</p>
             <p style="color:#888;">courseweb.sliit.lk</p>
           </div>
         `;
       }
       const showAllBtn = document.getElementById("show-all");
       if (showAllBtn) showAllBtn.style.display = "none";
+      const themeToggle = document.getElementById("theme-toggle");
+      if (themeToggle) themeToggle.style.display = 'none';
       return;
     }
 
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       const tabId = tabs[0].id;
 
-      refreshAndRender(tabId);
+      // Fetch modules once and pass them around
+      chrome.tabs.sendMessage(tabId, { type: "GET_MODULES" }, (response) => {
+        if (!response || !response.modules) return;
+        const modules = response.modules;
 
-      const filterSelect = document.getElementById("filter-select");
-      const sortSelect = document.getElementById("sort-select");
-      const searchInput = document.getElementById("search-input");
-      if (filterSelect) filterSelect.onchange = () => refreshAndRender(tabId);
-      if (sortSelect) sortSelect.onchange = () => refreshAndRender(tabId);
-      if (searchInput) searchInput.oninput = () => refreshAndRender(tabId);
+        function render() {
+            fetchHiddenModules((hiddenIds) => {
+                renderModuleList(modules, hiddenIds, tabId);
+            });
+        }
 
-      const showAllBtn = document.getElementById("show-all");
-      if (showAllBtn) {
-        showAllBtn.style.display = "";
-        showAllBtn.onclick = function () {
-          saveHiddenModules([], () => {
-            refreshAndRender(tabId);
-            chrome.tabs.sendMessage(tabId, { type: "SYNC_MODULES" });
-          });
-        };
-      }
+        render();
+        setupBulkActions(tabId, modules);
+
+        const filterSelect = document.getElementById("filter-select");
+        const sortSelect = document.getElementById("sort-select");
+        const searchInput = document.getElementById("search-input");
+        if (filterSelect) filterSelect.onchange = render;
+        if (sortSelect) sortSelect.onchange = render;
+        if (searchInput) searchInput.oninput = render;
+
+        const showAllBtn = document.getElementById("show-all");
+        if (showAllBtn) {
+            showAllBtn.style.display = "";
+            showAllBtn.onclick = function () {
+                saveHiddenModules([], () => {
+                    render();
+                    chrome.tabs.sendMessage(tabId, { type: "SYNC_MODULES" });
+                });
+            };
+        }
+      });
     });
   });
 });

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TidyCourseweb Popup</title>
+    <title>SliitScope Popup</title>
     <link rel="stylesheet" href="popup.css" />
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
   </head>
@@ -11,7 +11,10 @@
         <div class="header-icon">
           <i class="fi fi-tr-lesson"></i>
         </div>
-        <h3>TidyCourseweb</h3>
+        <h3>SliitScope</h3>
+        <div class="header-controls">
+            <button id="theme-toggle" title="Toggle theme">🌙</button>
+        </div>
       </div>
 
       <div class="content">
@@ -29,6 +32,13 @@
             <option value="az">Sort: A-Z</option>
             <option value="za">Sort: Z-A</option>
           </select>
+        </div>
+        <hr/>
+        <div class="bulk-controls">
+            <input type="checkbox" id="select-all" />
+            <label for="select-all">Select All</label>
+            <button id="hide-selected">Hide Selected</button>
+            <button id="show-selected">Show Selected</button>
         </div>
         <button id="show-all">Show All Modules</button>
         <ul id="module-list"></ul>
