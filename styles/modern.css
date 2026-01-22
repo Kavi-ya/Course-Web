@@ -1,0 +1,234 @@
+/* =========================================
+   SliitScope Modern Theme - Dark Mode
+   ========================================= */
+
+:root {
+    --ss-bg-primary: #0f172a;
+    --ss-bg-secondary: #1e293b;
+    --ss-bg-tertiary: #334155;
+    --ss-text-primary: #f8fafc;
+    --ss-text-secondary: #cbd5e1;
+    --ss-text-muted: #94a3b8;
+    --ss-primary: #3b82f6;
+    --ss-primary-hover: #2563eb;
+    --ss-accent: #8b5cf6;
+    --ss-border: #1e293b;
+    --ss-glass: rgba(30, 41, 59, 0.7);
+    --ss-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --ss-radius: 12px;
+}
+
+/* Apply Dark Theme only when body has the class */
+body.sliitscope-dark {
+    background-color: var(--ss-bg-primary) !important;
+    color: var(--ss-text-primary) !important;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+
+/* ===== Global Overrides ===== */
+body.sliitscope-dark a {
+    color: #60a5fa !important;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+body.sliitscope-dark a:hover {
+    color: #93c5fd !important;
+}
+
+/* ===== Navbar & Header ===== */
+body.sliitscope-dark .navbar,
+body.sliitscope-dark header.navbar,
+body.sliitscope-dark .fixed-top,
+body.sliitscope-dark #main-header,
+body.sliitscope-dark .lambda-nav {
+    background: var(--ss-glass) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--ss-bg-tertiary) !important;
+    box-shadow: var(--ss-shadow) !important;
+}
+
+body.sliitscope-dark .nav-link {
+    color: var(--ss-text-secondary) !important;
+}
+
+body.sliitscope-dark .nav-link.active {
+    color: var(--ss-primary) !important;
+    font-weight: 600;
+}
+
+/* ===== Cards & Blocks ===== */
+body.sliitscope-dark .card,
+body.sliitscope-dark .block,
+body.sliitscope-dark .well,
+body.sliitscope-dark #region-main,
+body.sliitscope-dark .activity {
+    background-color: var(--ss-bg-secondary) !important;
+    border: 1px solid var(--ss-bg-tertiary) !important;
+    border-radius: var(--ss-radius) !important;
+    box-shadow: var(--ss-shadow) !important;
+    color: var(--ss-text-primary) !important;
+}
+
+body.sliitscope-dark .card-body,
+body.sliitscope-dark .block-body {
+    background-color: transparent !important;
+}
+
+/* ===== Inputs & Forms ===== */
+body.sliitscope-dark input,
+body.sliitscope-dark select,
+body.sliitscope-dark textarea,
+body.sliitscope-dark .form-control {
+    background-color: var(--ss-bg-primary) !important;
+    border: 1px solid var(--ss-bg-tertiary) !important;
+    color: var(--ss-text-primary) !important;
+    border-radius: 8px !important;
+    padding: 8px 12px;
+}
+
+body.sliitscope-dark input:focus,
+body.sliitscope-dark select:focus {
+    border-color: var(--ss-primary) !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
+    outline: none;
+}
+
+/* ===== Dropdowns ===== */
+body.sliitscope-dark .dropdown-menu {
+    background-color: var(--ss-bg-secondary) !important;
+    border: 1px solid var(--ss-bg-tertiary) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.sliitscope-dark .dropdown-item {
+    color: var(--ss-text-secondary) !important;
+}
+
+body.sliitscope-dark .dropdown-item:hover,
+body.sliitscope-dark .dropdown-item:focus {
+    background-color: var(--ss-bg-tertiary) !important;
+    color: var(--ss-text-primary) !important;
+}
+
+/* ===== Course Cards specifics ===== */
+body.sliitscope-dark .card-img-top {
+    border-top-left-radius: var(--ss-radius) !important;
+    border-top-right-radius: var(--ss-radius) !important;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+body.sliitscope-dark .card:hover .card-img-top {
+    opacity: 1;
+}
+
+body.sliitscope-dark .dashboard-card-footer {
+    background-color: transparent !important;
+    border-top: 1px solid var(--ss-bg-tertiary) !important;
+}
+
+/* ===== Footer ===== */
+body.sliitscope-dark #page-footer {
+    background-color: var(--ss-bg-primary) !important;
+    border-top: 1px solid var(--ss-bg-tertiary) !important;
+    color: var(--ss-text-muted) !important;
+}
+
+/* ===== Utilities ===== */
+body.sliitscope-dark .text-muted {
+    color: var(--ss-text-muted) !important;
+}
+
+body.sliitscope-dark hr {
+    border-top: 1px solid var(--ss-bg-tertiary) !important;
+}
+
+/* Scrollbar */
+body.sliitscope-dark ::-webkit-scrollbar {
+    width: 10px;
+}
+
+body.sliitscope-dark ::-webkit-scrollbar-track {
+    background: var(--ss-bg-primary);
+}
+
+body.sliitscope-dark ::-webkit-scrollbar-thumb {
+    background: var(--ss-bg-tertiary);
+    border-radius: 5px;
+}
+
+body.sliitscope-dark ::-webkit-scrollbar-thumb:hover {
+    background: var(--ss-text-muted);
+}
+
+/* =========================================
+   Focus Mode (Privacy/Clean View)
+   ========================================= */
+
+/* When Focus Mode is active, hide major interface elements */
+body.sliitscope-focus-mode #main-header,
+body.sliitscope-focus-mode .lambda-nav,
+body.sliitscope-focus-mode #lambda-page-header,
+body.sliitscope-focus-mode #page-footer,
+body.sliitscope-focus-mode .fixed-top,
+body.sliitscope-focus-mode .drawer-toggles {
+    display: none !important;
+}
+
+/* Hide side blocks - BE CAREFUL not to hide main content */
+/* In this theme, the main content is inside a block-region too, so we must be specific */
+body.sliitscope-focus-mode .block-region-side-pre,
+body.sliitscope-focus-mode .block-region-side-post,
+body.sliitscope-focus-mode #block-region-side-pre,
+body.sliitscope-focus-mode #block-region-side-post {
+    display: none !important;
+}
+
+/* Ensure the main region takes full width and height if needed */
+body.sliitscope-focus-mode #page {
+    margin-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+body.sliitscope-focus-mode .wrapper-lambda {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+/* Center the content */
+body.sliitscope-focus-mode #region-main-box {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    display: flex !important;
+}
+
+body.sliitscope-focus-mode #region-main {
+    width: 100% !important;
+    max-width: 1200px !important;
+    /* Keep it readable */
+    margin: 0 auto !important;
+}
+
+/* Add a subtle indicator that Focus Mode is on (Optional) */
+body.sliitscope-focus-mode::before {
+    content: "Focus Mode Active via SliitScope";
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 10px;
+    color: var(--ss-text-muted);
+    opacity: 0.5;
+    z-index: 9999;
+}
+
+/* =========================================
+   Utility: Hidden State
+   ========================================= */
+.sliitscope-hidden {
+    display: none !important;
+}
